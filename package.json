@@ -1,0 +1,40 @@
+{
+  "name": "saintvision-app",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.60.0",
+    "@openai/agents": "^0.0.16",
+    "better-sqlite3": "^12.2.0",
+    "dotenv": "^17.2.1",
+    "fast-glob": "^3.3.3",
+    "glob": "^11.0.3",
+    "next": "^14.2.31",
+    "node-fetch": "^3.3.2",
+    "openai": "^5.12.2",
+    "pdf-parse": "^1.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "stripe": "^18.4.0",
+    "twilio": "^5.8.0",
+    "zod": "<=3.25.67"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.0",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "autoprefixer": "10.4.18",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.5",
+    "postcss": "8.4.38",
+    "tailwindcss": "3.4.4",
+    "typescript": "5.4.5"
+  }
+}

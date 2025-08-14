@@ -1,14 +1,22 @@
-export const metadata = {
-  title: 'SAINTSAL • Responsible Intelligence',
-  description: 'Dual-AI workspace (Claude + OpenAI) • Pro console • API endpoints.',
-};
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'SAINTSAL™ - Cookin Knowledge',
+  description: 'Saint Vision AI - Responsible Intelligence',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <body style={{ background: '#0a0a0a', color: '#e5e5e5', fontFamily: 'ui-sans-serif, system-ui' }}>
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
-  );
+  )
 }

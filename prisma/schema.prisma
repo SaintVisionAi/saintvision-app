@@ -1,0 +1,257 @@
+// SAINTVISIONAI DATABASE SCHEMA
+// Patent #10,290,222 - HACP™ Protected Intelligence Platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./saintvisionai.db"
+}
+
+// User Management & Authentication
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?
+  image         String?
+  tier          String    @default("free") // free, pro, enterprise
+  isFounder     Boolean   @default(false)
+  
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastActiveAt  DateTime  @default(now())
+  
+  // Relations
+  conversations Conversation[]
+  documents     Document[]
+  workflows     Workflow[]
+  analytics     UserAnalytics[]
+  
+  // NextAuth.js fields
+  accounts      Account[]
+  sessions      Session[]
+  
+  @@map("users")
+}
+
+// NextAuth.js required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+// HACP™ Conversation System
+model Conversation {
+  id          String    @id @default(cuid())
+  userId      String
+  title       String?
+  mode        String    @default("execution") // execution, founder
+  tier        Int       @default(1)
+  
+  // AI Configuration
+  aiModel     String    @default("dual") // dual, openai, claude, hacp
+  temperature Float     @default(0.3)
+  maxTokens   Int       @default(4000)
+  
+  // Status
+  isActive    Boolean   @default(true)
+  isArchived  Boolean   @default(false)
+  
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  lastMessageAt DateTime @default(now())
+  
+  // Relations
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages    Message[]
+  
+  @@map("conversations")
+}
+
+// Message Storage
+model Message {
+  id             String    @id @default(cuid())
+  conversationId String
+  role           String    // user, assistant, system
+  content        String
+  
+  // AI Metadata
+  aiModel        String?   // which AI generated this
+  tokensUsed     Int?
+  processingTime Int?      // milliseconds
+  confidence     Float?
+  
+  // Rich Content
+  attachments    String?   // JSON array of file references
+  metadata       String?   // JSON metadata from HACP™
+  
+  // Timestamps
+  createdAt      DateTime  @default(now())
+  
+  // Relations
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  
+  @@map("messages")
+}
+
+// Document Management
+model Document {
+  id           String    @id @default(cuid())
+  userId       String
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  
+  // File Storage
+  storageUrl   String    // URL to file storage
+  thumbnailUrl String?   // Preview image
+  
+  // AI Processing
+  summary      String?   // AI-generated summary
+  extractedText String?  // OCR/PDF text
+  embeddings   String?   // Vector embeddings JSON
+  tags         String?   // AI-generated tags JSON
+  
+  // Status
+  isProcessed  Boolean   @default(false)
+  isPublic     Boolean   @default(false)
+  
+  // Timestamps
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  
+  // Relations
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("documents")
+}
+
+// Business Workflow Automation
+model Workflow {
+  id          String    @id @default(cuid())
+  userId      String
+  name        String
+  description String?
+  
+  // Configuration
+  trigger     String    // voice, text, webhook, schedule
+  actions     String    // JSON array of actions
+  conditions  String?   // JSON conditions
+  
+  // Integration
+  ghlData     String?   // GoHighLevel configuration JSON
+  webhookUrl  String?   // Outbound webhook
+  
+  // Status
+  isActive    Boolean   @default(true)
+  runCount    Int       @default(0)
+  lastRun     DateTime?
+  
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relations
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  runs        WorkflowRun[]
+  
+  @@map("workflows")
+}
+
+// Workflow Execution History
+model WorkflowRun {
+  id         String    @id @default(cuid())
+  workflowId String
+  status     String    // success, failed, running
+  input      String?   // Input data JSON
+  output     String?   // Result data JSON
+  error      String?   // Error message if failed
+  duration   Int?      // Execution time in ms
+  
+  // Timestamps
+  createdAt  DateTime  @default(now())
+  
+  // Relations
+  workflow   Workflow  @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  
+  @@map("workflow_runs")
+}
+
+// Analytics & Insights
+model UserAnalytics {
+  id              String    @id @default(cuid())
+  userId          String
+  date            DateTime  @default(now())
+  
+  // Usage Metrics
+  messagesCount   Int       @default(0)
+  tokensUsed      Int       @default(0)
+  documentsUploaded Int     @default(0)
+  workflowsRun    Int       @default(0)
+  
+  // AI Interaction
+  openaiCalls     Int       @default(0)
+  claudeCalls     Int       @default(0)
+  hacpCalls       Int       @default(0)
+  
+  // Performance
+  avgResponseTime Float?
+  errorCount      Int       @default(0)
+  
+  // Relations
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, date])
+  @@map("user_analytics")
+}
+
+// System Configuration
+model SystemConfig {
+  id          String    @id @default(cuid())
+  key         String    @unique
+  value       String
+  description String?
+  updatedAt   DateTime  @updatedAt
+  
+  @@map("system_config")
+}

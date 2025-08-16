@@ -12,16 +12,25 @@ export default function WhyPage() {
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section - Enterprise Professional */}
       <section className="relative min-h-screen flex items-center justify-center px-8 overflow-hidden">
-        {/* PERFECT SaintSal + you hero background with parallax */}
-        <div className="absolute inset-0 transform scale-110">
+        {/* SAINTSAL + YOU Background - FIXED LIKE HOMEPAGE */}
+        <div className="fixed inset-0 z-0">
           <Image
-            src="/backgrounds/saintsal-plus-you.png"
+            src="/backgrounds/saintgotyoback.png"
             alt="SaintSal + You - Enterprise Partnership"
             fill
-            className="object-cover opacity-60 transition-transform duration-1000 ease-out"
+            className="object-contain opacity-40"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-transparent to-black/60" />
+        </div>
+
+        {/* Animated Grid Overlay */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px',
+          }}></div>
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto text-center pt-20">

@@ -4,8 +4,13 @@ import { NextResponse } from 'next/server'
 const ASSISTANT_ID = 'asst_36tyNxEdaR0r8KrwMcEHd7gw'
 
 export async function POST(request: Request) {
+  let message: string
+  let threadId: string | null
+  
   try {
-    const { message, threadId } = await request.json()
+    const body = await request.json()
+    message = body.message
+    threadId = body.threadId
     
     // Use the search/dual endpoint that exists
     const dualResponse = await fetch(`${request.headers.get('origin')}/api/search/dual`, {

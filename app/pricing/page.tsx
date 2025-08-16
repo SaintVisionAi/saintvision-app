@@ -43,7 +43,7 @@ export default function PricingPage() {
       description: 'Scale without limits',
       features: [
         'Everything in Pro',
-        'White-label options',
+        'Unlimited conversations',
         'Dedicated account manager',
         'Custom AI training',
         'Advanced integrations',
@@ -53,11 +53,26 @@ export default function PricingPage() {
       popular: false
     },
     {
+      name: 'White Label',
+      price: billing === 'monthly' ? 497 : 4970,
+      description: 'Your brand, our AI',
+      features: [
+        'Everything in Unlimited',
+        'Complete white-label solution',
+        'Custom domain & branding',
+        'Reseller capabilities',
+        'Client management dashboard',
+        'Revenue sharing options'
+      ],
+      cta: 'Go White Label',
+      popular: false
+    },
+    {
       name: 'Enterprise',
       price: 'Custom',
       description: 'Built for your needs',
       features: [
-        'Everything in Unlimited',
+        'Everything in White Label',
         'On-premise deployment',
         'Custom AI models',
         'Dedicated support team',

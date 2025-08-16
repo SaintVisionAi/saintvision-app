@@ -16,17 +16,7 @@ export default function SplashPage() {
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
-      {/* Background - AI Lab Underground vibe */}
-      <div className="absolute inset-0">
-        <Image
-          src="/backgrounds/AI lab underground.png"
-          alt="Background"
-          fill
-          className="object-cover opacity-20"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
-      </div>
+      {/* No Background - Clean Black */}
 
       {/* Main Content */}
       <div className={`relative z-10 text-center transition-all duration-1000 ${isReady ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>

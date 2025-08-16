@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 
@@ -23,7 +23,7 @@ interface Agent {
   specialization?: string
 }
 
-export default function WarRoom() {
+function WarRoomContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [messages, setMessages] = useState<Message[]>([])
@@ -628,5 +628,13 @@ export default function WarRoom() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function WarRoom() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+      <WarRoomContent />
+    </Suspense>
   )
 }

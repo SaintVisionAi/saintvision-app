@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs'
 import { prisma } from './prisma'
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma), // Temporarily disabled for build
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -70,7 +70,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: '/signin',
-    signUp: '/signup',
+    // signUp: '/signup', // Removed for build compatibility
   },
   secret: process.env.NEXTAUTH_SECRET,
 }

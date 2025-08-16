@@ -16,9 +16,11 @@ export default function SignInPage() {
     e.preventDefault()
     setLoading(true)
     
+    // TEMPORARY: Allow immediate access to platform for testing
+    // TODO: Re-enable proper authentication after deployment is stable
     setTimeout(() => {
-      router.push('/warroom')
-    }, 1500)
+      router.push('/dashboard') // Go to dashboard instead of warroom
+    }, 1000) // Shorter delay
   }
 
   return (

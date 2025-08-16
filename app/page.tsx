@@ -60,43 +60,43 @@ export default function HomePage() {
 
           <div className="text-center max-w-6xl mx-auto">
             
-            {/* Enterprise Classification */}
+            {/* SAINTSAL Classification */}
             <div className={`text-sm tracking-[0.5em] text-white mb-8 font-medium transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{
               textShadow: '0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5)'
             }}>
-              ENTERPRISE AI INTELLIGENCE PLATFORM
+              MEET SAINTSAL™ - THE ULTIMATE AI SUPERMAN
             </div>
 
-            {/* Main Headline - $10M Style with Neon Effects */}
+            {/* Main Headline - SAINTSAL BRANDING */}
             <h1 className={`text-5xl md:text-6xl lg:text-7xl font-extralight mb-20 leading-[1.4] transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
               <div className="block mb-8">
                 <span className="text-white font-thin" style={{
                   textShadow: '0 0 10px rgba(255, 255, 255, 0.8)'
-                }}>Responsible</span>
+                }}>SAINT</span>
               </div>
               <div className="block bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent font-normal pb-4" style={{
                 textShadow: '0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3)',
                 filter: 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.7))'
               }}>
-                Intelligence
+                SAL™
               </div>
             </h1>
 
-            {/* Powerful Subheading */}
+            {/* SAINTSAL SUPERMAN Messaging */}
             <div className={`max-w-5xl mx-auto mb-12 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <p className="text-2xl md:text-3xl text-white font-light leading-relaxed mb-8" style={{
                 textShadow: '0 0 10px rgba(255, 255, 255, 0.6)'
               }}>
-                The first AI platform that <span className="text-yellow-400" style={{
+                The AI that <span className="text-yellow-400" style={{
                   textShadow: '0 0 15px rgba(255, 215, 0, 0.6)',
                   filter: 'drop-shadow(0 0 8px rgba(255, 215, 0, 0.5))'
-                }}>thinks</span>, <span className="text-blue-400" style={{
+                }}>replaces every other tool</span>, <span className="text-blue-400" style={{
                   textShadow: '0 0 15px rgba(59, 130, 246, 0.6)',
                   filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))'
-                }}>learns</span>, and <span className="text-green-400" style={{
+                }}>thinks like Superman</span>, and <span className="text-green-400" style={{
                   textShadow: '0 0 15px rgba(34, 197, 94, 0.6)',
                   filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.5))'
-                }}>evolves</span> with your business
+                }}>dominates your industry</span>
               </p>
               
               <p className="text-lg text-gray-200 leading-relaxed max-w-4xl mx-auto" style={{

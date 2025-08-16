@@ -15,8 +15,11 @@ export default function SignUpPage() {
     e.preventDefault()
     setLoading(true)
     
+    // TEMPORARY: Simulate signup and redirect to PRO dashboard
+    // TODO: Implement real authentication with plan detection
     setTimeout(() => {
-      router.push('/warroom')
+      // For now, all new signups get PRO access
+      router.push('/pro')
     }, 1500)
   }
 

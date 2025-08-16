@@ -24,10 +24,10 @@ export default function LoginPage() {
           className="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg focus:border-yellow-500 focus:outline-none mb-4"
         />
         <button
-          onClick={() => email && router.push('/workspace')}
+          onClick={() => email && router.push('/pro')}
           className="w-full py-3 bg-green-600 rounded-lg font-semibold hover:bg-green-500"
         >
-          Continue
+          Continue to PRO
         </button>
       </div>
     </div>

@@ -16,11 +16,12 @@ export default function SignInPage() {
     e.preventDefault()
     setLoading(true)
     
-    // TEMPORARY: Allow immediate access to platform for testing
-    // TODO: Re-enable proper authentication after deployment is stable
+    // TEMPORARY: Simulate authentication and redirect PRO users to /pro
+    // TODO: Implement real authentication with plan detection
     setTimeout(() => {
-      router.push('/dashboard') // Go to dashboard instead of warroom
-    }, 1000) // Shorter delay
+      // Check if user has PRO plan (for now, all users get PRO access)
+      router.push('/pro') // Redirect to PRO dashboard as specified
+    }, 1000)
   }
 
   return (

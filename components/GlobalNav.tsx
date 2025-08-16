@@ -26,7 +26,7 @@ export default function GlobalNav() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <div 
-            onClick={() => router.push(isAuthenticated ? '/dashboard' : '/home')}
+            onClick={() => router.push(isAuthenticated ? '/dashboard' : '/')}
             className="flex items-center space-x-3 cursor-pointer group"
           >
             <Image

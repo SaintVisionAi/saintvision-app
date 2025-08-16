@@ -46,7 +46,8 @@ export async function POST(req: Request) {
   if (chosen === 'anthropic') {
     if (!ANTHROPIC_API_KEY) return NextResponse.json({ response: 'Missing ANTHROPIC_API_KEY' }, { status: 500 })
     const anthropic = new Anthropic({ apiKey: ANTHROPIC_API_KEY })
-    const msgs = [...history, { role: 'user' as const, content: message }]
+    const msgs = [...history.filter((msg: Msg) => msg.role !== 'system'), { role: 'user' as const, content: message }]
+      .map(msg => ({ role: msg.role as 'user' | 'assistant', content: msg.content }))
 
     const create = (model: string) => anthropic.messages.create({
       model,

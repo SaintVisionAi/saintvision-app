@@ -1,8 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
-export default function EnterpriseCommandCenter() {
+export default function ProDashboard() {
+  const router = useRouter()
+  const [activeSection, setActiveSection] = useState('home')
   const [command, setCommand] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -10,15 +14,30 @@ export default function EnterpriseCommandCenter() {
     if (!command.trim()) return
     setLoading(true)
     try {
-      const response = await fetch('/api/dual/run', {
+      const response = await fetch('/api/sal/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: command })
+        body: JSON.stringify({ 
+          message: command,
+          agentName: 'SAINTSAL Enterprise'
+        })
       })
       const data = await response.json()
-      console.log('SAL Response:', data)
+      console.log('SAINTSAL Enterprise Response:', data)
     } catch (error) {
       console.error('Error:', error)
+      // Fallback to dual search API
+      try {
+        const fallbackResponse = await fetch('/api/search/dual', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: command })
+        })
+        const fallbackData = await fallbackResponse.json()
+        console.log('Fallback Response:', fallbackData)
+      } catch (fallbackError) {
+        console.error('Fallback Error:', fallbackError)
+      }
     }
     setLoading(false)
     setCommand('')
@@ -41,41 +60,47 @@ export default function EnterpriseCommandCenter() {
         </div>
 
         <div className="space-y-1">
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 text-red-400">
-            <span>🤖</span><span>My Companion</span>
+          <button 
+            onClick={() => {setActiveSection('home'); router.push('/')}}
+            className={`w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 ${activeSection === 'home' ? 'bg-gray-900 text-yellow-400' : ''}`}
+          >
+            <span>🏠</span><span>Home</span>
           </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>💼</span><span>My Business</span>
+          <button 
+            onClick={() => {setActiveSection('workstation'); router.push('/workstation')}}
+            className={`w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 ${activeSection === 'workstation' ? 'bg-gray-900 text-yellow-400' : ''}`}
+          >
+            <span>🛠️</span><span>Workstation</span>
           </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 text-yellow-400">
-            <span>📝</span><span>Sticky Notes</span>
+          <button 
+            onClick={() => {setActiveSection('warroom'); router.push('/warroom')}}
+            className={`w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 ${activeSection === 'warroom' ? 'bg-gray-900 text-yellow-400' : ''}`}
+          >
+            <span>⚡</span><span>Warroom</span>
           </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>🛠️</span><span>AI Tools</span>
+          <button 
+            onClick={() => {setActiveSection('leads'); router.push('/crm')}}
+            className={`w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 ${activeSection === 'leads' ? 'bg-gray-900 text-yellow-400' : ''}`}
+          >
+            <span>👥</span><span>Leads (GHL)</span>
           </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>🎨</span><span>Image Generator</span>
+          <button 
+            onClick={() => setActiveSection('pipelines')}
+            className={`w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 ${activeSection === 'pipelines' ? 'bg-gray-900 text-yellow-400' : ''}`}
+          >
+            <span>📊</span><span>Pipelines</span>
           </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>🚀</span><span>SVG Launchpad</span>
+          <button 
+            onClick={() => setActiveSection('billing')}
+            className={`w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 ${activeSection === 'billing' ? 'bg-gray-900 text-yellow-400' : ''}`}
+          >
+            <span>💳</span><span>Billing</span>
           </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>💬</span><span>Feedback & Help</span>
-          </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>🤝</span><span>PartnerTech.ai CRM</span>
-          </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>👤</span><span>Client Portal</span>
-          </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>⬆️</span><span>Upgrade Tier</span>
-          </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>🏛️</span><span>SV Institute of AI (R+D)</span>
-          </button>
-          <button className="w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2">
-            <span>⚙️</span><span>My Account</span>
+          <button 
+            onClick={() => {setActiveSection('help'); router.push('/help')}}
+            className={`w-full text-left p-2 hover:bg-gray-900 rounded flex items-center space-x-2 ${activeSection === 'help' ? 'bg-gray-900 text-yellow-400' : ''}`}
+          >
+            <span>💬</span><span>Help</span>
           </button>
         </div>
 
@@ -101,7 +126,7 @@ export default function EnterpriseCommandCenter() {
         {/* Top Bar */}
         <div className="bg-gray-950 border-b border-gray-800 px-6 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-bold">🏢 Enterprise Command Center</h1>
+            <h1 className="text-xl font-bold">📊 Dashboard</h1>
             <span className="bg-yellow-500 text-black px-2 py-1 rounded text-xs font-bold">PRO TIER</span>
           </div>
           <div className="flex items-center space-x-4 text-sm">
@@ -153,11 +178,11 @@ export default function EnterpriseCommandCenter() {
           {/* Welcome Message */}
           <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 p-4 rounded-lg mb-6 border border-blue-800/30">
             <p className="text-sm">
-              🎯 "Enterprise Command Center Active" Welcome to your AI-powered business control room. 
-              I can analyze your pipeline, draft outreach sequences, and execute GHL workflows. 
-              What would you like to accomplish?
+              🧠 "HACP™ Dual Neuro-Symbolic Architecture Active" Welcome to your intelligent dashboard. 
+              I can analyze your business metrics, optimize workflows, and provide strategic insights 
+              through our patented Human-AI Connection Protocol. What would you like to accomplish?
             </p>
-            <div className="mt-2 text-xs text-gray-500">Speak or type below</div>
+            <div className="mt-2 text-xs text-gray-500">SAINTSAL Enterprise Mode | Type commands below</div>
           </div>
 
           {/* Pipeline Overview */}
@@ -208,7 +233,7 @@ export default function EnterpriseCommandCenter() {
               value={command}
               onChange={(e) => setCommand(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleCommand()}
-              placeholder="Ask about pipeline analysis, CRM workflows, or business strategy..."
+              placeholder="HACP™ Dual Neuro-Symbolic Engine - Ask about metrics, workflows, or strategic analysis..."
               className="flex-1 p-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-yellow-500 focus:outline-none"
               disabled={loading}
             />
@@ -221,8 +246,8 @@ export default function EnterpriseCommandCenter() {
             </button>
           </div>
           <div className="mt-2 flex items-center justify-between text-xs text-gray-500">
-            <span>AI: Saint Gotthejuice</span>
-            <span>© Saint Gotthejuice</span>
+            <span>AI: SAINTSAL™ Enterprise Mode</span>
+            <span>© SaintVisionAI™</span>
           </div>
         </div>
       </div>

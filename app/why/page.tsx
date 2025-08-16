@@ -3,19 +3,23 @@
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useState } from 'react'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 export default function WhyPage() {
   const router = useRouter()
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <>
+      <Header />
+      <div className="min-h-screen bg-black text-white pt-20">
       {/* Hero Section - Enterprise Professional */}
       <section className="relative min-h-screen flex items-center justify-center px-8 overflow-hidden">
         {/* SAINTSAL + YOU Background - FIXED LIKE HOMEPAGE */}
         <div className="fixed inset-0 z-0">
           <Image
-            src="/backgrounds/STICKYSAL.png"
+            src="/backgrounds/saintgotyoback.png"
             alt="SaintSal + You - Enterprise Partnership"
             fill
             className="object-contain opacity-40"
@@ -526,6 +530,8 @@ export default function WhyPage() {
         </div>
       </section>
 
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }

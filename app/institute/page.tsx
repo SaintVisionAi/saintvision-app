@@ -1,8 +1,13 @@
 'use client'
 
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+
 export default function InstitutePage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <>
+      <Header />
+      <div className="min-h-screen bg-black text-white pt-20">
       <div className="max-w-6xl mx-auto px-6 py-20">
         {/* Hero Section */}
         <div className="text-center mb-16">
@@ -192,6 +197,8 @@ export default function InstitutePage() {
           </div>
         </section>
       </div>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }

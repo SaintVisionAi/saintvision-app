@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 export default function HomePage() {
   const router = useRouter()
@@ -14,7 +16,9 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden relative">
+    <>
+      <Header />
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden relative">
       {/* FUTURESV Background - FIXED PARALLAX */}
       <div className="fixed inset-0 z-0">
         <Image
@@ -270,6 +274,8 @@ export default function HomePage() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }

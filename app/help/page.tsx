@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 export default function HelpPage() {
   const [selectedCategory, setSelectedCategory] = useState('general')
@@ -32,23 +34,39 @@ export default function HelpPage() {
     setLoading(true)
     
     try {
-      const res = await fetch('/api/dual/run', {
+      const res = await fetch('/api/sal/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          message: `Help request: ${message}` 
+          message: `24/7 Helpdesk Support Request: ${message}`,
+          agentName: 'SUPERSAL Support'
         })
       })
       const data = await res.json()
-      setResponse(data.response)
+      setResponse(data.response || data.message)
     } catch (error) {
-      setResponse("SAL is connecting... Please try again.")
+      // Fallback to dual search API
+      try {
+        const fallbackRes = await fetch('/api/search/dual', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            prompt: `SUPERSAL™ 24/7 Support: ${message}` 
+          })
+        })
+        const fallbackData = await fallbackRes.json()
+        setResponse(fallbackData.response || fallbackData.result || "SUPERSAL™ is connecting... Please try again.")
+      } catch (fallbackError) {
+        setResponse("SUPERSAL™ is connecting... Please try again.")
+      }
     }
     setLoading(false)
   }
 
   return (
-    <div className="min-h-screen bg-black text-white pt-20">
+    <>
+      <Header />
+      <div className="min-h-screen bg-black text-white pt-20">
       <section className="relative py-20 px-8">
         <div className="absolute inset-0">
           <Image
@@ -70,10 +88,10 @@ export default function HelpPage() {
           />
           <h1 className="text-5xl md:text-6xl font-extralight mb-6">
             24/7 Help Desk
-            <span className="block text-yellow-500 mt-2">Powered by SAL</span>
+            <span className="block text-yellow-500 mt-2">Powered by SUPERSAL™</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            SAL handles everything. No tickets, no waiting, just instant intelligent support.
+            SUPERSAL™ handles everything. No tickets, no waiting, just instant intelligent support.
           </p>
         </div>
       </section>
@@ -83,7 +101,7 @@ export default function HelpPage() {
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
             <h2 className="text-2xl font-light mb-6 flex items-center">
               <span className="text-3xl mr-3">🤖</span>
-              Ask SAL Anything
+              Ask SUPERSAL™ Anything
             </h2>
             
             <div className="space-y-4">
@@ -100,12 +118,12 @@ export default function HelpPage() {
                 disabled={loading || !message.trim()}
                 className="px-8 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-medium rounded-lg hover:from-yellow-400 hover:to-yellow-500 disabled:opacity-50 transition"
               >
-                {loading ? 'SAL is thinking...' : 'Get Instant Help'}
+                {loading ? 'SUPERSAL™ is thinking...' : 'Get Instant Help'}
               </button>
 
               {response && (
                 <div className="mt-6 p-6 bg-black/50 border border-yellow-500/30 rounded-lg">
-                  <p className="text-yellow-500 font-medium mb-2">SAL's Response:</p>
+                  <p className="text-yellow-500 font-medium mb-2">SUPERSAL™ Response:</p>
                   <p className="text-gray-300 whitespace-pre-wrap">{response}</p>
                 </div>
               )}
@@ -113,7 +131,7 @@ export default function HelpPage() {
 
             <div className="mt-8 pt-8 border-t border-white/10">
               <p className="text-sm text-gray-500 text-center">
-                SAL responds instantly 24/7 • No tickets • No waiting • Just solutions
+                SUPERSAL™ responds instantly 24/7 • No tickets • No waiting • Just solutions
               </p>
             </div>
           </div>
@@ -134,10 +152,12 @@ export default function HelpPage() {
             </a>
           </div>
           <p className="text-xs text-gray-600 mt-4">
-            Note: SAL handles 99.9% of all issues instantly. Human support for enterprise emergencies only.
+            Note: SUPERSAL™ handles 99.9% of all issues instantly. Human support for enterprise emergencies only.
           </p>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }

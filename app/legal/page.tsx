@@ -1,8 +1,13 @@
 'use client'
 
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+
 export default function LegalPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <>
+      <Header />
+      <div className="min-h-screen bg-black text-white pt-20">
       <div className="max-w-4xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Legal & Compliance</h1>
@@ -95,6 +100,8 @@ export default function LegalPage() {
           </section>
         </div>
       </div>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }

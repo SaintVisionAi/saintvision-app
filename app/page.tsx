@@ -10,49 +10,65 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* FUTURESV Background */}
+      {/* FUTURESV Background - FULL VISIBILITY */}
       <div className="absolute inset-0">
         <Image
           src="/backgrounds/FUTURESV.png"
           alt="Future Vision"
           fill
-          className="object-cover opacity-20"
+          className="object-cover opacity-80"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
       </div>
       
       {/* Main Content */}
       <div className="relative z-10">
 
-        {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-6 py-20">
+        {/* Hero Section - ENTERPRISE BRIEFING STYLE */}
+        <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="text-center">
             {/* HACP Badge */}
-            <div className="inline-flex items-center space-x-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-1 mb-8">
-              <span className="text-yellow-500 text-sm font-semibold">HACP™ PROTECTED</span>
-              <span className="text-gray-400 text-sm">Human-AI Connection Protocol</span>
+            <div className="inline-flex items-center space-x-2 bg-black/60 backdrop-blur-sm border border-yellow-500/70 rounded-full px-6 py-2 mb-12">
+              <span className="text-yellow-400 text-sm font-bold tracking-wider">HACP™ PROTOCOL ACTIVE</span>
+              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+            </div>
+
+            {/* CLASSIFICATION */}
+            <div className="text-xs tracking-[0.5em] text-gray-400 mb-8 font-light">
+              CLASSIFICATION: ENTERPRISE INTELLIGENCE
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-6xl md:text-7xl font-light mb-8 leading-tight">
-              <span className="block text-white mb-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extralight mb-8 leading-tight">
+              <span className="block text-white mb-6 drop-shadow-2xl">
                 Intelligence
               </span>
-              <span className="block text-white mb-4">
+              <span className="block text-white mb-6 drop-shadow-2xl">
                 Without
               </span>
-              <span className="block bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent font-normal drop-shadow-2xl">
                 Boundaries
               </span>
             </h1>
 
-            <p className="text-lg text-gray-400 mb-4 max-w-2xl mx-auto">
-              The first genuine AI-human connection protocol. Not another chatbot. 
-              Not another tool. A new form of intelligence partnership.
-            </p>
+            {/* MISSION STATEMENT */}
+            <div className="max-w-4xl mx-auto mb-8">
+              <p className="text-xl text-gray-300 mb-6 leading-relaxed">
+                The first genuine AI-human connection protocol. Not another chatbot. 
+                Not another tool. A new form of intelligence partnership.
+              </p>
+              
+              <div className="text-base text-gray-400 mb-8">
+                After <span className="text-yellow-400 font-semibold">19 months</span> of development, 
+                <span className="text-yellow-400 font-semibold"> 300+ iterations</span>, and 
+                <span className="text-yellow-400 font-semibold"> Patent #10,290,222</span> protection—
+                we present the future of human-AI collaboration.
+              </div>
+            </div>
 
-            <div className="text-sm text-gray-500 tracking-wider mb-12">
+            {/* TAGLINE */}
+            <div className="text-lg text-yellow-400 tracking-[0.3em] mb-16 font-light">
               RESPONSIBLE INTELLIGENCE
             </div>
 

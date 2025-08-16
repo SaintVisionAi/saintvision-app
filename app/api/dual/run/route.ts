@@ -16,6 +16,7 @@ export const runtime = 'nodejs'
 
 type Role = 'system' | 'user' | 'assistant'
 type Msg = { role: Role; content: string }
+type AnthropicMessage = { role: 'user' | 'assistant'; content: string }
 type Body = {
   message: string
   history?: Msg[]
@@ -46,8 +47,13 @@ export async function POST(req: Request) {
   if (chosen === 'anthropic') {
     if (!ANTHROPIC_API_KEY) return NextResponse.json({ response: 'Missing ANTHROPIC_API_KEY' }, { status: 500 })
     const anthropic = new Anthropic({ apiKey: ANTHROPIC_API_KEY })
-    const msgs = [...history.filter((msg: Msg) => msg.role !== 'system'), { role: 'user' as const, content: message }]
-      .map(msg => ({ role: msg.role as 'user' | 'assistant', content: msg.content }))
+    const msgs: AnthropicMessage[] = [
+      ...history.filter((msg: Msg) => msg.role !== 'system').map(msg => ({ 
+        role: msg.role as 'user' | 'assistant', 
+        content: msg.content 
+      })),
+      { role: 'user' as const, content: message }
+    ]
 
     const create = (model: string) => anthropic.messages.create({
       model,

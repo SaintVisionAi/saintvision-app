@@ -1,5 +1,23 @@
 {
+  "version": 2,
+  "framework": "nextjs",
   "buildCommand": "npm run build",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./",
-  "framework": "nextjs"
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "functions": {
+    "app/**/*.ts": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "regions": ["iad1"],
+  "redirects": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1",
+      "permanent": false
+    }
+  ]
 }

@@ -18,29 +18,29 @@ export default function DashboardPage() {
         <div className="grid lg:grid-cols-3 gap-6 mb-8">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-gray-400 text-sm">Conversations Today</span>
-              <span className="text-green-500 text-xs">+12%</span>
+              <span className="text-gray-400 text-sm">AI Conversations</span>
+              <span className="text-blue-500 text-xs">Ready</span>
             </div>
-            <div className="text-3xl font-light text-white mb-2">47</div>
-            <div className="text-xs text-gray-500">SAL interactions</div>
+            <div className="text-3xl font-light text-white mb-2">—</div>
+            <div className="text-xs text-gray-500">Start using WARROOM</div>
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-gray-400 text-sm">Tasks Completed</span>
-              <span className="text-green-500 text-xs">+28%</span>
+              <span className="text-gray-400 text-sm">HACP™ Protocol</span>
+              <span className="text-green-500 text-xs">● Active</span>
             </div>
-            <div className="text-3xl font-light text-white mb-2">124</div>
-            <div className="text-xs text-gray-500">This week</div>
+            <div className="text-3xl font-light text-white mb-2">READY</div>
+            <div className="text-xs text-gray-500">Triple-AI engine</div>
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
             <div className="flex justify-between items-start mb-4">
-              <span className="text-gray-400 text-sm">Time Saved</span>
-              <span className="text-yellow-500 text-xs">High efficiency</span>
+              <span className="text-gray-400 text-sm">Enterprise Status</span>
+              <span className="text-yellow-500 text-xs">Patent #10,290,222</span>
             </div>
-            <div className="text-3xl font-light text-white mb-2">18.5h</div>
-            <div className="text-xs text-gray-500">This week</div>
+            <div className="text-3xl font-light text-white mb-2">LIVE</div>
+            <div className="text-xs text-gray-500">Production ready</div>
           </div>
         </div>
 
@@ -71,22 +71,22 @@ export default function DashboardPage() {
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-            <h2 className="text-xl font-light mb-4">Recent Activity</h2>
+            <h2 className="text-xl font-light mb-4">System Status</h2>
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-sm">
-                <span className="text-yellow-500">●</span>
-                <span className="text-gray-400">SAL completed market analysis</span>
-                <span className="text-gray-600 text-xs ml-auto">2m ago</span>
-              </div>
-              <div className="flex items-center space-x-3 text-sm">
                 <span className="text-green-500">●</span>
-                <span className="text-gray-400">New lead added to CRM</span>
-                <span className="text-gray-600 text-xs ml-auto">15m ago</span>
+                <span className="text-gray-400">HACP™ Protocol Active</span>
+                <span className="text-gray-600 text-xs ml-auto">Ready</span>
               </div>
               <div className="flex items-center space-x-3 text-sm">
                 <span className="text-blue-500">●</span>
-                <span className="text-gray-400">Report generated</span>
-                <span className="text-gray-600 text-xs ml-auto">1h ago</span>
+                <span className="text-gray-400">Triple-AI Engine Online</span>
+                <span className="text-gray-600 text-xs ml-auto">Operational</span>
+              </div>
+              <div className="flex items-center space-x-3 text-sm">
+                <span className="text-yellow-500">●</span>
+                <span className="text-gray-400">Enterprise Platform</span>
+                <span className="text-gray-600 text-xs ml-auto">Production</span>
               </div>
             </div>
           </div>

@@ -72,19 +72,14 @@ function WarRoomContent() {
     }
   ]
 
-  const conversations = [
-    { id: '1', title: 'Business Strategy Session', date: 'Today', preview: 'Revenue optimization discussion', icon: '💼', agentId: '1' },
-    { id: '2', title: 'Content Creation Brief', date: 'Today', preview: 'Marketing campaign copy', icon: '✍️', agentId: '2' },
-    { id: '3', title: 'Technical Architecture', date: 'Yesterday', preview: 'API integration planning', icon: '⚡', agentId: '3' },
-    { id: '4', title: 'General Consultation', date: 'Yesterday', preview: 'Multi-domain discussion', icon: '🤖', agentId: 'default' },
-  ]
+  const [conversations, setConversations] = useState<any[]>([])
 
   const tools = [
-    { id: 'crm', name: 'CRM', icon: '📱', status: 'connected' },
-    { id: 'calendar', name: 'Calendar', icon: '📅', status: 'connected' },
-    { id: 'analytics', name: 'Analytics', icon: '📈', status: 'connected' },
-    { id: 'documents', name: 'Documents', icon: '📄', status: 'ready' },
-    { id: 'email', name: 'Email', icon: '✉️', status: 'ready' },
+    { id: 'crm', name: 'CRM', icon: '📱', status: 'ready', description: 'Connect your CRM system' },
+    { id: 'calendar', name: 'Calendar', icon: '📅', status: 'ready', description: 'Schedule optimization' },
+    { id: 'analytics', name: 'Analytics', icon: '📈', status: 'ready', description: 'Business intelligence' },
+    { id: 'documents', name: 'Documents', icon: '📄', status: 'ready', description: 'Knowledge base' },
+    { id: 'email', name: 'Email', icon: '✉️', status: 'ready', description: 'Communication hub' },
   ]
 
   useEffect(() => {
@@ -351,24 +346,31 @@ function WarRoomContent() {
               <>
                 <div className="text-xs tracking-[0.3em] text-gray-600 mb-3">RECENT</div>
                 <div className="space-y-2">
-                  {conversations.map(conv => (
-                    <button
-                      key={conv.id}
-                      className="w-full text-left p-3 rounded-lg bg-gray-950/30 hover:bg-gray-900/50 border border-gray-900 hover:border-gray-800 transition group"
-                    >
-                      <div className="flex items-start space-x-3">
-                        <span className="text-lg">{conv.icon}</span>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm text-gray-200 group-hover:text-white font-medium">
-                            {conv.title}
-                          </div>
-                          <div className="text-xs text-gray-600 truncate mt-1">
-                            {conv.preview}
+                  {conversations.length === 0 ? (
+                    <div className="text-center py-8">
+                      <div className="text-gray-600 text-xs mb-2">No conversations yet</div>
+                      <div className="text-gray-700 text-xs">Start chatting with SAL to build your history</div>
+                    </div>
+                  ) : (
+                    conversations.map(conv => (
+                      <button
+                        key={conv.id}
+                        className="w-full text-left p-3 rounded-lg bg-gray-950/30 hover:bg-gray-900/50 border border-gray-900 hover:border-gray-800 transition group"
+                      >
+                        <div className="flex items-start space-x-3">
+                          <span className="text-lg">{conv.icon}</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm text-gray-200 group-hover:text-white font-medium">
+                              {conv.title}
+                            </div>
+                            <div className="text-xs text-gray-600 truncate mt-1">
+                              {conv.preview}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </button>
-                  ))}
+                      </button>
+                    ))
+                  )}
                 </div>
               </>
             ) : (
@@ -598,10 +600,13 @@ function WarRoomContent() {
                 >
                   <div className="flex items-center space-x-3">
                     <span className="text-lg">{tool.icon}</span>
-                    <span className="text-sm text-gray-400 group-hover:text-white">{tool.name}</span>
+                    <div className="flex-1">
+                      <div className="text-sm text-gray-400 group-hover:text-white">{tool.name}</div>
+                      <div className="text-xs text-gray-600">{tool.description}</div>
+                    </div>
                   </div>
-                  <span className={`text-xs ${tool.status === 'connected' ? 'text-green-500' : 'text-gray-600'}`}>
-                    {tool.status === 'connected' ? '●' : '○'}
+                  <span className="text-xs text-gray-600">
+                    ○
                   </span>
                 </button>
               ))}

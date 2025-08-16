@@ -3,9 +3,9 @@ import { CONFIG, requireEnv } from "@/lib/env";
 export async function GET() {
   try {
     const key = requireEnv("azureSpeechKey");
-    const region = CONFIG.azureSpeechRegion || "eastus";
+    const region = (CONFIG as any).azureSpeechRegion || "eastus";
     const endpointBase =
-      CONFIG.azureSpeechEndpoint?.replace(/\/+$/, "") ||
+      (CONFIG as any).azureSpeechEndpoint?.replace(/\/+$/, "") ||
       `https://${region}.api.cognitive.microsoft.com`;
 
     // Azure Speech token endpoint

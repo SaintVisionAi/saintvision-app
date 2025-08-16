@@ -45,7 +45,7 @@ async function askClaude(prompt: string) {
 }
 
 export async function POST(req: Request) {
-  const { prompt } = await readJson<{ prompt?: string }>(req);
+  const { prompt } = await readJson(req) as { prompt?: string };
   if (!prompt || !prompt.trim()) return fail('Missing prompt');
 
   const [claude, openai] = await Promise.all([askClaude(prompt), askOpenAI(prompt)]);

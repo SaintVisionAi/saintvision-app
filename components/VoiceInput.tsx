@@ -11,15 +11,15 @@ export default function VoiceInput({ onTranscript, disabled }: VoiceInputProps) 
   const [isListening, setIsListening] = useState(false)
   const [transcript, setTranscript] = useState('')
   const [error, setError] = useState<string | null>(null)
-  const recognitionRef = useRef<SpeechRecognition | null>(null)
+  const recognitionRef = useRef<any | null>(null)
 
   useEffect(() => {
     // Check if browser supports Speech Recognition
     if (typeof window !== 'undefined') {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+      const any = window.any || window.webkitany
       
-      if (SpeechRecognition) {
-        recognitionRef.current = new SpeechRecognition()
+      if (any) {
+        recognitionRef.current = new any()
         const recognition = recognitionRef.current
 
         recognition.continuous = false
@@ -147,7 +147,7 @@ export default function VoiceInput({ onTranscript, disabled }: VoiceInputProps) 
 // Extend Window interface for TypeScript
 declare global {
   interface Window {
-    SpeechRecognition: any
-    webkitSpeechRecognition: any
+    any: any
+    webkitany: any
   }
 }

@@ -4,12 +4,12 @@ import { NextResponse } from 'next/server'
 const ASSISTANT_ID = 'asst_36tyNxEdaR0r8KrwMcEHd7gw'
 
 export async function POST(request: Request) {
-  let message: string
-  let threadId: string | null
+  let message: string = ''
+  let threadId: string | null = null
   
   try {
     const body = await request.json()
-    message = body.message
+    message = body.message || ''
     threadId = body.threadId
     
     // Use the search/dual endpoint that exists
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       const hacpResponse = await fetch(`${request.headers.get('origin')}/api/hacp/agent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
+        body: JSON.stringify({ message: message || 'test' })
       })
       
       if (hacpResponse.ok) {

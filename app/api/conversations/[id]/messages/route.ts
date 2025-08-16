@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
-import { HACPCovenantEngine } from '@/lib/hacp/core/engine'
+// import { getServerSession } from 'next-auth/next'
+// import { authOptions } from '@/lib/auth'
+// import { prisma } from '@/lib/prisma'
+// import { HACPCovenantEngine } from '@/lib/hacp/core/engine'
+
+// TEMPORARILY DISABLED FOR VERCEL DEPLOYMENT - PRISMA BUILD ISSUES
+// TODO: Re-enable after Prisma is properly configured for production
 
 // Get conversation messages
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  return NextResponse.json({ error: 'API temporarily disabled for deployment' }, { status: 503 })
+  /*
   try {
     const session = await getServerSession(authOptions)
     
@@ -28,8 +33,13 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-// Send message to conversation
+*/
+}
+
+// Send message to conversation  
 export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
+  return NextResponse.json({ error: 'API temporarily disabled for deployment' }, { status: 503 })
+  /*
   try {
     const session = await getServerSession(authOptions)
     
@@ -147,4 +157,5 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     console.error('Failed to process message:', error)
     return NextResponse.json({ error: 'Internal error' }, { status: 500 })
   }
+  */
 }

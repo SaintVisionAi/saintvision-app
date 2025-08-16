@@ -12,16 +12,16 @@ export default function WhyPage() {
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section - Enterprise Professional */}
       <section className="relative min-h-screen flex items-center justify-center px-8 overflow-hidden">
-        {/* Professional hero background */}
-        <div className="absolute inset-0">
+        {/* PERFECT SaintSal + you hero background with parallax */}
+        <div className="absolute inset-0 transform scale-110">
           <Image
-            src="/backgrounds/eyeontheprize.png"
-            alt="Enterprise Vision"
+            src="/backgrounds/saintsal-plus-you.png"
+            alt="SaintSal + You - Enterprise Partnership"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-60 transition-transform duration-1000 ease-out"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto text-center pt-20">

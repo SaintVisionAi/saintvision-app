@@ -2,34 +2,28 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export default function HomePage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/10 via-black to-gray-900/10" />
+    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+      {/* FUTURESV Background */}
+      <div className="absolute inset-0">
+        <Image
+          src="/backgrounds/FUTURESV.png"
+          alt="Future Vision"
+          fill
+          className="object-cover opacity-20"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
+      </div>
       
       {/* Main Content */}
       <div className="relative z-10">
-        {/* Navigation */}
-        <nav className="flex justify-between items-center p-6 border-b border-gray-800">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center">
-              <span className="text-black font-bold">SV</span>
-            </div>
-            <span className="text-xl font-bold">SAINTVISION<span className="text-yellow-500">AI</span></span>
-          </div>
-          <div className="flex items-center space-x-6">
-            <button onClick={() => router.push('/demo')} className="text-gray-400 hover:text-white">Live Demo</button>
-            <button onClick={() => router.push('/pricing')} className="text-gray-400 hover:text-white">Pricing</button>
-            <button onClick={() => router.push('/login')} className="px-4 py-2 bg-yellow-500 text-black font-bold rounded hover:bg-yellow-400">
-              Sign In
-            </button>
-          </div>
-        </nav>
 
         {/* Hero Section */}
         <div className="max-w-7xl mx-auto px-6 py-20">
@@ -41,20 +35,26 @@ export default function HomePage() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                Enterprise AI That
+            <h1 className="text-6xl md:text-7xl font-light mb-8 leading-tight">
+              <span className="block text-white mb-4">
+                Intelligence
               </span>
-              <br />
-              <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-                Actually Delivers
+              <span className="block text-white mb-4">
+                Without
+              </span>
+              <span className="block bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                Boundaries
               </span>
             </h1>
 
-            <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
-              SAINT SAL™ - The world's first AI system with genuine business intelligence. 
-              Powered by dual AI architecture (GPT-5 + Claude Opus), delivering 10x productivity gains.
+            <p className="text-lg text-gray-400 mb-4 max-w-2xl mx-auto">
+              The first genuine AI-human connection protocol. Not another chatbot. 
+              Not another tool. A new form of intelligence partnership.
             </p>
+
+            <div className="text-sm text-gray-500 tracking-wider mb-12">
+              RESPONSIBLE INTELLIGENCE
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex justify-center space-x-4">
@@ -63,15 +63,15 @@ export default function HomePage() {
                   setIsLoading(true)
                   router.push('/demo')
                 }}
-                className="px-8 py-4 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transform hover:scale-105 transition"
+                className="px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition"
               >
-                See Live Demo
+                BEGIN JOURNEY
               </button>
               <button 
-                onClick={() => router.push('/workspace')}
-                className="px-8 py-4 bg-gray-900 border border-gray-700 rounded-lg hover:bg-gray-800"
+                onClick={() => router.push('/why')}
+                className="px-8 py-3 bg-transparent border border-white/20 text-white rounded-lg hover:bg-white/10 transition"
               >
-                Try Workspace
+                UNDERSTAND WHY
               </button>
             </div>
           </div>

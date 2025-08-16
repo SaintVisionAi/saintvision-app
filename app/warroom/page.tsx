@@ -70,16 +70,16 @@ export default function WarRoom() {
 
     } catch (error) {
       try {
-        const fallbackResponse = await fetch('/api/dual/run', {
+        const fallbackResponse = await fetch('/api/search/dual', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: userMessage })
+          body: JSON.stringify({ prompt: userMessage })
         })
         
         const fallbackData = await fallbackResponse.json()
         setMessages(prev => [...prev, {
           role: 'assistant',
-          content: fallbackData.response,
+          content: fallbackData.unified || fallbackData.claude || 'SAL is ready to help.',
           timestamp: new Date().toLocaleTimeString()
         }])
       } catch (fallbackError) {
@@ -109,7 +109,7 @@ export default function WarRoom() {
   }
 
   return (
-    <div className="h-screen bg-black flex overflow-hidden">
+    <div className="fixed inset-0 bg-black flex overflow-hidden z-50">
       {/* Left Sidebar - SICK DESIGN */}
       <div className={`${sidebarOpen ? 'w-72' : 'w-16'} transition-all duration-300 bg-black border-r border-gray-900 flex flex-col relative`}>
         {/* Fixed Cookin Knowledge Background */}

@@ -12,16 +12,16 @@ export default function WhyPage() {
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section with warm background */}
       <section className="relative min-h-screen flex items-center justify-center px-8 overflow-hidden">
-        {/* Warm inviting background - using your HELLO or Welcome background */}
+        {/* The BEST background ever - your amazing vision */}
         <div className="absolute inset-0">
           <Image
-            src="/backgrounds/HELLO.png"
-            alt="Welcome"
+            src="/backgrounds/eyeontheprize.png"
+            alt="Eye on the Prize"
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto text-center pt-20">

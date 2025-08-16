@@ -7,12 +7,11 @@ export async function POST(request: Request) {
   try {
     const { message, threadId } = await request.json()
     
-    // For now, use the dual AI endpoint that's working
-    // We'll connect your real assistant after testing
-    const dualResponse = await fetch(`${request.headers.get('origin')}/api/dual/run`, {
+    // Use the search/dual endpoint that exists
+    const dualResponse = await fetch(`${request.headers.get('origin')}/api/search/dual`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
+      body: JSON.stringify({ prompt: message })
     })
     
     if (!dualResponse.ok) {
@@ -22,7 +21,7 @@ export async function POST(request: Request) {
     const data = await dualResponse.json()
     
     return NextResponse.json({
-      response: data.response || `SAL: I understand "${message}". Let me analyze this for you...`,
+      response: data.unified || data.claude || `SAL: I understand "${message}". Let me analyze this for you...`,
       threadId: threadId || 'temp-' + Date.now(),
       model: 'SAINT SAL (HACP™)',
       status: 'success'
@@ -31,11 +30,32 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.error('SAL Chat Error:', error)
     
-    // Fallback response so it never fails completely
+    try {
+      // Try HACP engine as primary fallback
+      const hacpResponse = await fetch(`${request.headers.get('origin')}/api/hacp/agent`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      })
+      
+      if (hacpResponse.ok) {
+        const hacpData = await hacpResponse.json()
+        return NextResponse.json({
+          response: hacpData.response || `SAL (HACP™): Processing "${message}"...`,
+          threadId: threadId || 'hacp-' + Date.now(),
+          model: 'SAINT SAL™ (HACP™ Engine)',
+          status: 'hacp-fallback'
+        })
+      }
+    } catch (hacpError) {
+      console.error('HACP fallback failed:', hacpError)
+    }
+    
+    // Ultimate fallback response so it never fails completely
     return NextResponse.json({
-      response: `I'm processing your request. My analysis indicates this requires strategic consideration. What specific aspect would you like me to focus on?`,
+      response: `I'm SAL, analyzing your request: "${message}". Based on my strategic assessment, this requires focused attention. What specific outcome are you targeting?`,
       threadId: 'fallback-' + Date.now(),
-      model: 'SAINT SAL',
+      model: 'SAINT SAL™',
       status: 'fallback'
     })
   }

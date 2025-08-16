@@ -24,7 +24,18 @@ async function getHACPEngine() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { message, userId, context = {} } = await request.json();
+    let body;
+    try {
+      body = await request.json();
+    } catch (jsonError) {
+      logger.error('Invalid JSON in request:', jsonError);
+      return NextResponse.json(
+        { error: 'Invalid JSON format in request body' },
+        { status: 400 }
+      );
+    }
+    
+    const { message, userId, context = {} } = body;
     
     if (!message) {
       return NextResponse.json(

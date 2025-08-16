@@ -24,6 +24,26 @@ export const CLAUDE_ALIAS_FALLBACK = 'claude-opus-4-1';
 export const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY ?? '';
 export const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET ?? ''; // <-- must be whsec_...
 
+// Additional environment variables
+export const SLACK_WEBHOOK = process.env.SLACK_ALERT_WEBHOOK ?? process.env.SLACK_INCOMING_WEBHOOK_URL ?? '';
+export const UPSTASH_VECTOR_REST_URL = process.env.UPSTASH_VECTOR_REST_URL ?? '';
+export const UPSTASH_VECTOR_REST_TOKEN = process.env.UPSTASH_VECTOR_REST_TOKEN ?? '';
+export const OPENAI_PROJECT_ID = process.env.OPENAI_PROJECT_ID ?? '';
+export const PMPT_DEFAULT_ID = process.env.OPENAI_PUBLISHED_PROMPT ?? '';
+export const AZURE_SPEECH_API_KEY = process.env.AZURE_SPEECH_API_KEY ?? '';
+export const AZURE_SPEECH_REGION = process.env.AZURE_SPEECH_REGION ?? '';
+export const GHL_API_KEY = process.env.GHL_API_KEY ?? '';
+export const OPENAI_ORGANIZATION = process.env.OPENAI_ORGANIZATION ?? '';
+
+// Helper function for required environment variables
+export function requireEnv(key: string): string {
+  const value = process.env[key];
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${key}`);
+  }
+  return value;
+}
+
 export const CONFIG = {
   hasOpenAI: !!OPENAI_API_KEY,
   hasAnthropic: !!ANTHROPIC_API_KEY,
@@ -33,4 +53,15 @@ export const CONFIG = {
   },
   // If a Published Prompt ID is present, we auto-use it for OpenAI requests.
   preferOpenAIPrompt: !!OPENAI_PUBLISHED_PROMPT,
+  // Add missing properties that other files expect
+  anthropicKey: ANTHROPIC_API_KEY,
+  openaiKey: OPENAI_API_KEY,
+  openaiOrg: OPENAI_ORGANIZATION,
+  openaiProject: OPENAI_PROJECT_ID,
+  slackWebhook: SLACK_WEBHOOK,
+  ghlApiKey: GHL_API_KEY,
+  azureSpeechKey: AZURE_SPEECH_API_KEY,
+  azureSpeechRegion: AZURE_SPEECH_REGION,
+  upstashUrl: UPSTASH_VECTOR_REST_URL,
+  upstashToken: UPSTASH_VECTOR_REST_TOKEN,
 } as const;

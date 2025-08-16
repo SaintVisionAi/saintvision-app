@@ -117,7 +117,7 @@ export class HACPCovenantEngine extends EventEmitter {
           confidence: analysis.confidence,
           actions: response.actions,
           processingTime,
-          tokensUsed: response.usage?.total_tokens || 0,
+          tokensUsed: (response.usage as any)?.total_tokens || 0,
           model: this.claude4Config.model
         }
       };
@@ -169,8 +169,8 @@ export class HACPCovenantEngine extends EventEmitter {
     });
 
     return {
-      content: response.content[0].text,
-      actions: this.extractActions(response.content[0].text),
+      content: (response.content[0] as any).text || '',
+      actions: this.extractActions((response.content[0] as any).text || ''),
       usage: response.usage
     };
   }

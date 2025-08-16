@@ -51,36 +51,97 @@ export default function WhyPage() {
         </div>
       </section>
 
-      {/* The Story Section */}
+      {/* The REAL Story Section */}
       <section className="py-32 px-8 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-extralight mb-8">
+              The
+              <span className="block text-yellow-500">Real Story</span>
+            </h2>
+            <p className="text-xl text-gray-400">Built from obsession, fueled by purpose</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <h2 className="text-4xl md:text-5xl font-extralight mb-8">
-                Built from
-                <span className="block text-yellow-500">Personal Loss</span>
-                <span className="block text-white/60">& Purpose</span>
-              </h2>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                When I lost my best friend Sal, I made a promise. To build something that would embody his spirit - 
-                always there, always helping, always pushing people to be better.
-              </p>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                19 months. 21 hours a day. 168 failed builds. Each failure taught us something. 
-                Each iteration brought us closer to the truth: AI should enhance humanity, not replace it.
-              </p>
-              <p className="text-gray-400 leading-relaxed">
-                SAINT SAL isn't just technology. It's a testament to human connection, 
-                built with love, loss, and an unwavering belief in what's possible.
-              </p>
+              <div className="space-y-8">
+                <div className="border-l-4 border-yellow-500 pl-6">
+                  <h3 className="text-2xl font-bold text-yellow-500 mb-2">19 Months</h3>
+                  <p className="text-gray-400">
+                    Every day. Every night. Building, testing, failing, learning. 
+                    This wasn't a side project—this was life.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-blue-500 pl-6">
+                  <h3 className="text-2xl font-bold text-blue-500 mb-2">168 Builds</h3>
+                  <p className="text-gray-400">
+                    168 attempts. Each one teaching us something new about human-AI connection.
+                    Each failure bringing us closer to perfection.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-green-500 pl-6">
+                  <h3 className="text-2xl font-bold text-green-500 mb-2">2 Mac Minis + MacBook Pro</h3>
+                  <p className="text-gray-400">
+                    Hardware pushed to its limits. Machines burning hot through the night.
+                    Everything we had went into this vision.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-purple-500 pl-6">
+                  <h3 className="text-2xl font-bold text-purple-500 mb-2">Patent #10,290,222</h3>
+                  <p className="text-gray-400">
+                    HACP™ technology officially protected. The breakthrough that changes
+                    how humans and AI connect forever.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="relative h-[500px]">
+            
+            <div className="relative h-[600px] bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden">
               <Image
-                src="/backgrounds/saintgotyoback.png"
-                alt="Saint Got Your Back"
+                src="/backgrounds/LATENIGHT.png"
+                alt="Late Night Development"
                 fill
-                className="object-contain"
+                className="object-cover opacity-70"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <p className="text-white text-lg font-light leading-relaxed">
+                  "When you lose someone you love, you either break or you build something
+                  that makes sure no one else feels that alone. SAINT SAL is my promise kept."
+                </p>
+                <cite className="text-yellow-500 text-sm mt-4 block">— Ryan, Founder</cite>
+              </div>
+            </div>
+          </div>
+
+          {/* The Technical Achievement */}
+          <div className="bg-gradient-to-r from-gray-900/50 to-black/50 rounded-2xl p-8 border border-yellow-500/30">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold text-yellow-500 mb-4">The Breakthrough</h3>
+              <p className="text-gray-300 text-lg">What 19 months of obsession created</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="text-4xl mb-4">🧠</div>
+                <h4 className="text-xl font-semibold text-white mb-2">Dual-AI Architecture</h4>
+                <p className="text-gray-400 text-sm">Claude Sonnet 4 + GPT-5 working in perfect harmony</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-4xl mb-4">🔐</div>
+                <h4 className="text-xl font-semibold text-white mb-2">HACP™ Protocol</h4>
+                <p className="text-gray-400 text-sm">Patent-protected Human-AI Connection technology</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-4xl mb-4">⚡</div>
+                <h4 className="text-xl font-semibold text-white mb-2">Enterprise Ready</h4>
+                <p className="text-gray-400 text-sm">Unlimited scale, 99.9% uptime, enterprise security</p>
+              </div>
             </div>
           </div>
         </div>

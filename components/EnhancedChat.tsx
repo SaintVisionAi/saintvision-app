@@ -5,6 +5,10 @@ import { useSession } from 'next-auth/react'
 import ReactMarkdown from 'react-markdown'
 import VoiceInput from './VoiceInput'
 import FileDropZone from './FileDropZone'
+import SmoothOnboarding from './SmoothOnboarding'
+import ContextualHelp, { useContextualHelp } from './ContextualHelp'
+import SmartUpgradePrompts, { trackPositiveInteraction } from './SmartUpgradePrompts'
+import SmartErrorBoundary from './SmartErrorBoundary'
 
 interface Message {
   id: string
@@ -28,7 +32,10 @@ export default function EnhancedChat({ conversationId, initialMessages = [], onN
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [showFileUpload, setShowFileUpload] = useState(false)
+  const [showOnboarding, setShowOnboarding] = useState(false)
+  const [upgradePromptTrigger, setUpgradePromptTrigger] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const { trigger: helpTrigger, showHelp } = useContextualHelp()
 
   useEffect(() => {
     scrollToBottom()
@@ -76,6 +83,9 @@ export default function EnhancedChat({ conversationId, initialMessages = [], onN
         onNewMessage(data.assistantMessage)
       }
 
+      // Track positive interaction
+      trackPositiveInteraction()
+
     } catch (error) {
       console.error('Error sending message:', error)
       // Add error message
@@ -118,7 +128,8 @@ export default function EnhancedChat({ conversationId, initialMessages = [], onN
   }
 
   return (
-    <div className="flex flex-col h-full bg-black text-white">
+    <SmartErrorBoundary>
+      <div className="flex flex-col h-full bg-black text-white">
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 ? (
@@ -237,14 +248,19 @@ export default function EnhancedChat({ conversationId, initialMessages = [], onN
       <div className="border-t border-gray-800 p-4">
         <div className="flex items-end space-x-2">
           {/* Voice Input */}
-          <VoiceInput 
-            onTranscript={handleVoiceTranscript}
-            disabled={isLoading}
-          />
+          <div 
+            onMouseEnter={() => showHelp('voice-button-hover')}
+          >
+            <VoiceInput 
+              onTranscript={handleVoiceTranscript}
+              disabled={isLoading}
+            />
+          </div>
 
           {/* File Upload Button */}
           <button
             onClick={() => setShowFileUpload(!showFileUpload)}
+            onMouseEnter={() => showHelp('file-button-hover')}
             disabled={isLoading}
             className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors disabled:opacity-50"
             title="Upload files"
@@ -297,6 +313,15 @@ export default function EnhancedChat({ conversationId, initialMessages = [], onN
           </div>
         </div>
       </div>
+
+      {/* Smart Components */}
+      {showOnboarding && (
+        <SmoothOnboarding onComplete={() => setShowOnboarding(false)} />
+      )}
+      
+      <ContextualHelp trigger={helpTrigger} />
+      <SmartUpgradePrompts trigger={upgradePromptTrigger} />
     </div>
+    </SmartErrorBoundary>
   )
 }

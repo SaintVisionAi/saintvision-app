@@ -2,7 +2,7 @@ import { readJson, json, fail } from '@/lib/http';
 import { SLACK_WEBHOOK } from '@/lib/env';
 
 export async function POST(req: Request) {
-  const { subject, message, severity = 'normal', userEmail, tone, tier } = await readJson<any>(req);
+  const { subject, message, severity = 'normal', userEmail, tone, tier } = await readJson(req);
   if (!message) return fail('message required');
 
   if (!SLACK_WEBHOOK) {

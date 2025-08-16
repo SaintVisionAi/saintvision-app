@@ -2,7 +2,7 @@ import { readJson, json, fail } from '@/lib/http';
 import { UPSTASH_VECTOR_REST_URL, UPSTASH_VECTOR_REST_TOKEN } from '@/lib/env';
 
 export async function POST(req: Request) {
-  const { query, k = 5 } = await readJson<{ query?: string; k?: number }>(req);
+  const { query, k = 5 } = await readJson(req);
   if (!query) return fail('query required');
   if (!UPSTASH_VECTOR_REST_URL || !UPSTASH_VECTOR_REST_TOKEN) {
     return fail('Upstash Vector not configured', 501);

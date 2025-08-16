@@ -2,22 +2,9 @@
   "version": 2,
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
   "installCommand": "npm install",
-  "functions": {
-    "app/**/*.ts": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "env": {
     "NODE_ENV": "production"
   },
-  "regions": ["iad1"],
-  "redirects": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1",
-      "permanent": false
-    }
-  ]
+  "regions": ["iad1"]
 }

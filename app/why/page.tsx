@@ -15,7 +15,7 @@ export default function WhyPage() {
         {/* SAINTSAL + YOU Background - FIXED LIKE HOMEPAGE */}
         <div className="fixed inset-0 z-0">
           <Image
-            src="/backgrounds/saintgotyoback.png"
+            src="/backgrounds/STICKYSAL.png"
             alt="SaintSal + You - Enterprise Partnership"
             fill
             className="object-contain opacity-40"

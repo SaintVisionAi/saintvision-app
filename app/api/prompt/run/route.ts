@@ -1,5 +1,5 @@
-import { NextRequest } from 'next/server';
-import { openai } from '@/lib/openai';
+import { NextRequest, NextResponse } from 'next/server';
+// import { openai } from '@/lib/openai';
 import {
   SAINTSAL_PROMPT_ID,
   SAINTSAL_PROMPT_VERSION,
@@ -7,6 +7,10 @@ import {
 } from '@/lib/config/saintsalPrompt';
 
 export async function POST(req: NextRequest) {
+  // TEMPORARILY DISABLED FOR DEPLOYMENT - OPENAI API KEY ISSUES
+  return NextResponse.json({ error: 'API temporarily disabled for deployment' }, { status: 503 })
+  
+  /*
   const body = await req.json().catch(() => ({}));
   const input = typeof body?.input === 'string' ? body.input : '';
 
@@ -35,4 +39,5 @@ export async function POST(req: NextRequest) {
     }
     return Response.json({ ok: false, error: msg || 'Prompt run error' }, { status: 500 });
   }
+  */
 }

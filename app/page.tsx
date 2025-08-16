@@ -10,16 +10,16 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* FUTURESV Background - FULL VISIBILITY */}
-      <div className="absolute inset-0">
+      {/* FUTURESV Background - FULL PICTURE WITH PARALLAX */}
+      <div className="absolute inset-0 scale-110">
         <Image
           src="/backgrounds/FUTURESV.png"
           alt="Future Vision"
           fill
-          className="object-cover opacity-80"
+          className="object-contain object-center opacity-50 transition-transform duration-1000 ease-out"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
       </div>
       
       {/* Main Content */}

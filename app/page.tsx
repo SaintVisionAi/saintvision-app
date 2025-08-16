@@ -10,16 +10,16 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* FUTURESV Background - FULL PICTURE WITH PARALLAX */}
-      <div className="absolute inset-0 scale-110">
+      {/* Welcomeonin Background - PERFECT FIT */}
+      <div className="absolute inset-0">
         <Image
-          src="/backgrounds/FUTURESV.png"
-          alt="Future Vision"
+          src="/backgrounds/Welcomeonin.png"
+          alt="Welcome"
           fill
-          className="object-contain object-center opacity-50 transition-transform duration-1000 ease-out"
+          className="object-cover opacity-40"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
       </div>
       
       {/* Main Content */}
@@ -60,10 +60,9 @@ export default function HomePage() {
               </p>
               
               <div className="text-base text-gray-400 mb-8">
-                After <span className="text-yellow-400 font-semibold">19 months</span> of development, 
-                <span className="text-yellow-400 font-semibold"> 300+ iterations</span>, and 
-                <span className="text-yellow-400 font-semibold"> Patent #10,290,222</span> protection—
-                we present the future of human-AI collaboration.
+                Enterprise-grade AI that understands context, emotion, and intent. 
+                <span className="text-yellow-400 font-semibold"> Patent-protected technology</span> that creates 
+                genuine partnerships between human vision and artificial intelligence.
               </div>
             </div>
 
@@ -92,50 +91,50 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Stats Section */}
-          <div className="grid grid-cols-3 gap-8 mt-20 py-12 border-t border-gray-800">
+          {/* Core Capabilities */}
+          <div className="grid grid-cols-3 gap-8 mt-20 py-12 border-t border-gray-800/50">
             <div className="text-center">
-              <div className="text-4xl font-bold text-yellow-500">$57.5K</div>
-              <div className="text-gray-400 mt-2">Pipeline Generated</div>
+              <div className="text-3xl font-light text-yellow-400 mb-2">Enterprise</div>
+              <div className="text-gray-400 text-sm">Grade Security</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-yellow-500">168</div>
-              <div className="text-gray-400 mt-2">Iterations to Perfection</div>
+              <div className="text-3xl font-light text-yellow-400 mb-2">Unlimited</div>
+              <div className="text-gray-400 text-sm">Processing Power</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-yellow-500">HACP™</div>
-              <div className="text-gray-400 mt-2">Patent Pending</div>
+              <div className="text-3xl font-light text-yellow-400 mb-2">HACP™</div>
+              <div className="text-gray-400 text-sm">Patent Protected</div>
             </div>
           </div>
 
           {/* Features Grid */}
           <div className="grid grid-cols-3 gap-6 mt-20">
-            <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6 hover:border-yellow-500/50 transition">
-              <div className="text-yellow-500 text-2xl mb-4">🤖</div>
-              <h3 className="text-xl font-bold mb-2">Dual AI Brain</h3>
-              <p className="text-gray-400">GPT-5 + Claude Opus working in perfect synchronization</p>
+            <div className="bg-black/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-6 hover:border-yellow-500/50 transition">
+              <div className="text-yellow-400 text-2xl mb-4">🧠</div>
+              <h3 className="text-xl font-semibold mb-2 text-white">Multi-AI Intelligence</h3>
+              <p className="text-gray-300 text-sm">Advanced AI models working in harmony for superior results</p>
             </div>
-            <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6 hover:border-yellow-500/50 transition">
-              <div className="text-yellow-500 text-2xl mb-4">🔐</div>
-              <h3 className="text-xl font-bold mb-2">Enterprise Security</h3>
-              <p className="text-gray-400">HACP™ protocol ensures data protection and compliance</p>
+            <div className="bg-black/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-6 hover:border-yellow-500/50 transition">
+              <div className="text-yellow-400 text-2xl mb-4">🔐</div>
+              <h3 className="text-xl font-semibold mb-2 text-white">Enterprise Security</h3>
+              <p className="text-gray-300 text-sm">Military-grade encryption with full compliance standards</p>
             </div>
-            <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6 hover:border-yellow-500/50 transition">
-              <div className="text-yellow-500 text-2xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold mb-2">Instant Integration</h3>
-              <p className="text-gray-400">Connect with GoHighLevel, Stripe, and 100+ platforms</p>
+            <div className="bg-black/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-6 hover:border-yellow-500/50 transition">
+              <div className="text-yellow-400 text-2xl mb-4">⚡</div>
+              <h3 className="text-xl font-semibold mb-2 text-white">Seamless Integration</h3>
+              <p className="text-gray-300 text-sm">Works with your existing systems and workflows</p>
             </div>
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-20 py-12 border-t border-gray-800">
-            <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
-            <p className="text-gray-400 mb-8">Join elite companies using SAINT SAL™</p>
+          <div className="text-center mt-20 py-12 border-t border-gray-800/50">
+            <h2 className="text-3xl font-light mb-4 text-white">Experience the Future of Intelligence</h2>
+            <p className="text-gray-400 mb-8">Where technology serves purpose and intelligence serves the heart</p>
             <button 
               onClick={() => router.push('/demo')}
-              className="px-8 py-4 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 text-lg"
+              className="px-8 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-100 text-lg transition"
             >
-              Schedule Demo
+              BEGIN JOURNEY
             </button>
           </div>
         </div>
